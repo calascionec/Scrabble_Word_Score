@@ -122,6 +122,19 @@
 
 		}
 
+		function test_calculateScore_enter_multipleLetters()
+		{
+				$test_ScrabbleScore = new ScrabbleScore;
+				$input = "Scrabble!";
+
+				//Act
+				$result = $test_ScrabbleScore->calculateScore($input);
+
+				//Assert
+				$this->assertEquals(14, $result);
+
+		}
+
 	}
 
 ?>

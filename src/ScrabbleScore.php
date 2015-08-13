@@ -4,34 +4,47 @@
         function calculateScore($input)
         {
             $input = $this->stripPunctuation($input);
-            $input = strtolower($input);
+            $input = strtoupper($input);
 
-            $value_1 = "aeioulnrst";
-            $value_2 = "dg";
-            $value_3 = "bcmp";
-            $value_4 = "fhvwy";
-            $value_5 = "k";
-            $value_8 = "jx";
-            $value_10 = "qz";
+            $value_1 = "AEIOULNRST";
+            $value_2 = "DG";
+            $value_3 = "BCMP";
+            $value_4 = "FHVWY";
+            $value_5 = "K";
+            $value_8 = "JX";
+            $value_10 = "QZ";
 
+            $return_array = array();
+            array_push($return_array, $input);
 
-            if($input=="") {
-                return 0;
-            } elseif( (strpos($value_1, $input))!==false ) {
-                return 1;
-            } elseif( (strpos($value_2, $input)) !==false ) {
-                return 2;
-            } elseif( (strpos($value_3, $input)) !==false ) {
-                return 3;
-            } elseif( (strpos($value_4, $input)) !==false ) {
-                return 4;
-            } elseif( (strpos($value_5, $input)) !==false ) {
-                return 5;
-            } elseif( (strpos($value_8, $input)) !==false ) {
-                return 8;
-            } elseif( (strpos($value_10, $input)) !==false ) {
-                return 10;
+            $char_array = str_split($input);
+            $counter = 0;
+
+            foreach ($char_array as $char) {
+
+                if( $char=="" ) {
+                    return 0;
+                }
+                if( (strpos($value_1, $char))!==false ) {
+                    $counter+= 1;
+                } elseif( (strpos($value_2, $char)) !==false ) {
+                    $counter+= 2;
+                } elseif( (strpos($value_3, $char)) !==false ) {
+                    $counter+= 3;
+                } elseif( (strpos($value_4, $char)) !==false ) {
+                    $counter+= 4;
+                } elseif( (strpos($value_5, $char)) !==false ) {
+                    $counter+= 5;
+                } elseif( (strpos($value_8, $char)) !==false ) {
+                    $counter+= 8;
+                } elseif( (strpos($value_10, $char)) !==false ) {
+                    $counter+= 10;
+                }
             }
+
+            array_push($return_array, $counter);
+
+            return $return_array;
 
         }
 
