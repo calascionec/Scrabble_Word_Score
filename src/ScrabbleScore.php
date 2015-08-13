@@ -4,15 +4,18 @@
         function calculateScore($input)
         {
             $input = $this->stripPunctuation($input);
+            if( $input == "") { return 0; }
             $input = strtoupper($input);
 
-            $value_1 = "AEIOULNRST";
-            $value_2 = "DG";
-            $value_3 = "BCMP";
-            $value_4 = "FHVWY";
-            $value_5 = "K";
-            $value_8 = "JX";
-            $value_10 = "QZ";
+
+            $string_value_array =  [ "AEIOULNRST" => 1,
+                                     "DG"         => 2,
+                                     "BCMP"       => 3,
+                                     "FHVWY"      => 4,
+                                     "K"          => 5,
+                                     "JX"         => 8,
+                                     "QZ"         => 10
+                                    ];
 
             $return_array = array();
             array_push($return_array, $input);
@@ -20,25 +23,11 @@
             $char_array = str_split($input);
             $counter = 0;
 
-            foreach ($char_array as $char) {
-
-                if( $char=="" ) {
-                    return 0;
-                }
-                if( (strpos($value_1, $char))!==false ) {
-                    $counter+= 1;
-                } elseif( (strpos($value_2, $char)) !==false ) {
-                    $counter+= 2;
-                } elseif( (strpos($value_3, $char)) !==false ) {
-                    $counter+= 3;
-                } elseif( (strpos($value_4, $char)) !==false ) {
-                    $counter+= 4;
-                } elseif( (strpos($value_5, $char)) !==false ) {
-                    $counter+= 5;
-                } elseif( (strpos($value_8, $char)) !==false ) {
-                    $counter+= 8;
-                } elseif( (strpos($value_10, $char)) !==false ) {
-                    $counter+= 10;
+            foreach($string_value_array as $key => $value) {
+                foreach ($char_array as $char) {
+                    if ( (strpos($key, $char)) !==false ) {
+                        $counter += $value;
+                    }
                 }
             }
 
@@ -48,6 +37,10 @@
 
         }
 
+
+        //=================================================================
+        //  Function for stripping all punctuation and spaces from string
+        //-----------------------------------------------------------------
 
         function stripPunctuation($str)
         {
