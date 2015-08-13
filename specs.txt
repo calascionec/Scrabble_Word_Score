@@ -1,0 +1,8 @@
+User input " " "0"
+User input "a" "1"
+User input "d" "2"
+User input "b" "3"
+User input "f" "4"
+User input "k" "5"
+User input "j" "8"
+User input "q" "10"
