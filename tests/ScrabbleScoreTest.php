@@ -135,6 +135,19 @@
 
 		}
 
+		function test_calculateScore_enter_not_a_word()
+		{
+				$test_ScrabbleScore = new ScrabbleScore;
+				$input = "hjk!";
+
+				//Act
+				$result = $test_ScrabbleScore->calculateScore($input);
+
+				//Assert
+				$this->assertEquals("Not a word!", $result);
+
+		}
+
 	}
 
 ?>

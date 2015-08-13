@@ -7,12 +7,11 @@
     // use Symfony\Componet\Debug\Debug;
     // Debug::enable();
 
-
     // Initialize application object
     $app = new Silex\Application();
 
     // Uncomment line below for debug messages
-    $app['debug'] = true;
+    // app['debug'] = true;
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.path' => __DIR__.'/../views'
@@ -25,7 +24,7 @@
         return $app['twig']->render('form.html.twig');
     });
 
-    // // Route to display contact successfully created page
+    // // Route to display scrabble word and score
     $app->get("/results", function() use ($app) {
         $my_scrabble_score = new ScrabbleScore();
         $word = $_GET["string"];
@@ -37,11 +36,6 @@
         return $app['twig']->render('results.html.twig', array('word' => $output_word, 'score' => $score));
     });
 
-    // // Route to display confirmation of deleting all contacts
-    // $app->get("/delete_contacts", function() use ($app) {
-    //     Contact::deleteAll();
-    //     return $app['twig']->render('delete_contacts.html.twig', array('list_of_contacts' => array() ));
-    // });
 
     return $app;
 
